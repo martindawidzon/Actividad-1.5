@@ -1,48 +1,44 @@
 public class Curso
 {
-private List<Alumno> alumnos= new List<Alumno>;
+private List<Alumno> alumnos = new List<Alumno>();
 
 public void agregarAlumnos(Alumno alumno)
 {
-    this.alumnos.Add(alumno)
+    this.alumnos.Add(alumno);
 }
 public Alumno buscarAlumnoPorDNI(int DNI)
 {
     int i = 0;
-    while (i < alumnos.count && alumnos[i].getDNI() != DNI)
+    while (i < alumnos.Count && alumnos[i].getDNI() != DNI)
     {        
     i++;
     }
-    if (i >= alumnos.count)
+    if (i >= alumnos.Count)
     {
         return null;
     }
     else
     {
-        return alumno[i];
+        return alumnos[i];
     }
 }
-public void agregarFalta(int falta, Alumno alumno)
+public void agregarFalta(double falta, Alumno alumno)
 {
   int i = 0;
-    while (i < alumnos.count && alumnos[i] != alumno)
+    while (i < alumnos.Count && alumnos[i] != alumno)
     {        
     i++;
     }
-    if (i >= alumnos.count)
+    if (i < alumnos.Count)
     {
-       return null;
+        alumnos[i].agregarFalta(falta);
     }
-    else
-    {
-        alumno[i].agregarFalta(falta);
-    }  
 }
 public void mostrarAlumnos()
 {
     foreach (Alumno alumno in alumnos)
     {
-        Console.WriteLine(alumno);
+        Console.WriteLine(alumno.getNombre());
     }
 }
 public void mostrarAlumnosLibres()
@@ -51,7 +47,7 @@ public void mostrarAlumnosLibres()
     {
         if(alumno.mostrarFaltas() >= 15)
         {
-            Console.WriteLine(alumno);
+            Console.WriteLine(alumno.getNombre());
         }
     }
 }
