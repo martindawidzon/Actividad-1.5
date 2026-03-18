@@ -12,13 +12,18 @@ public Alumno(string nombre, int DNI)
     }
 public int getDNI()
 {
- return this.DNI;
+    return this.DNI;
 }
 }
 public void agregarFalta(int falta)
 {
-    alumno.CantidaFaltas += falta;
+    this.CantidaFaltas += falta;
 }
-public double mostrarFaltas(){
-    return this.CantidaFaltas
+public double mostrarFaltas()
+{
+    return this.CantidaFaltas;
+}
+public string getNombre()
+{
+    return this.nombre;
 }

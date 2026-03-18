@@ -42,7 +42,7 @@ public void mostrarAlumnos()
 {
     foreach (Alumno alumno in alumnos)
     {
-    Console.WriteLine(alumno);
+        Console.WriteLine(alumno);
     }
 }
 public void mostrarAlumnosLibres()
