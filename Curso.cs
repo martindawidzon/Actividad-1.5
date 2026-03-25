@@ -1,26 +1,22 @@
 public class Curso
 {
-private List<Alumno> alumnos = new List<Alumno>();
+private Dictionary<Alumno> alumnos = new Dictionary<int, Alumno>();
 
-public void agregarAlumnos(Alumno alumno)
+public bool agregarAlumnos(int clave, Alumno alumno)
 {
-    this.alumnos.Add(alumno);
-}
-public Alumno buscarAlumnoPorDNI(int DNI)
-{
-    int i = 0;
-    while (i < alumnos.Count && alumnos[i].getDNI() != DNI)
-    {        
-    i++;
-    }
-    if (i >= alumnos.Count)
+    if(alumnos.ContainsKey(clave))
     {
-        return null;
+        return false;
     }
     else
     {
-        return alumnos[i];
+    this.alumnos.Add(clave, alumno);
+        return true;
     }
+}
+public Alumno buscarAlumnoPorDNI(int DNI)
+{
+    return alumnos[DNI];
 }
 public void agregarFalta(double falta, Alumno alumno)
 {

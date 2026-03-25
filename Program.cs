@@ -28,7 +28,12 @@ class Program
                 Console.WriteLine("escriba el dni");
                 dni = int.Parse(Console.ReadLine());
                 Alumno alumno = new Alumno (nombre, dni);
-                curso.agregarAlumnos(alumno);
+                while(!curso.agregarAlumnos(alumno, dni))
+                {
+                    Console.WriteLine("DNI invalido, vuelva a ingresar");
+                    dni = int.Parse(Console.ReadLine());
+                    alumno.cambiarDNI(dni);
+                };
             }
             else if( opcion == 2)
             {

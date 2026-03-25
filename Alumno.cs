@@ -26,4 +26,8 @@ public Alumno(string nombre, int DNI)
     {
         return this.nombre;
     }
+    public void cambiarDNI(int DNI)
+    {
+        this.DNI = DNI;
+    }
 }
