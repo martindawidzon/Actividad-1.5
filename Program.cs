@@ -25,10 +25,12 @@ class Program
                 int dni;
                 Console.WriteLine("escriba el nombre");
                 nombre = Console.ReadLine();
+                
                 Console.WriteLine("escriba el dni");
                 dni = int.Parse(Console.ReadLine());
+
                 Alumno alumno = new Alumno (nombre, dni);
-                while(!curso.agregarAlumnos(alumno, dni))
+                while(!curso.agregarAlumnos(dni, alumno));
                 {
                     Console.WriteLine("DNI invalido, vuelva a ingresar");
                     dni = int.Parse(Console.ReadLine());
@@ -38,7 +40,14 @@ class Program
             else if( opcion == 2)
             {
                 int dniBuscar;
-                Console.WriteLine("Ingrese el dni");
+                do{
+                Console.WriteLine("ingrese el dni del alumno");
+                dniBuscar = int.Parse(Console.ReadLine());
+                if(!curso.existeAlumnoPorDNI(dniBuscar)){
+                    Console.WriteLine("Ese dni no existe. Ingresar denuevo");
+                }
+                }while(!curso.existeAlumnoPorDNI(dniBuscar));
+
                 dniBuscar = int.Parse(Console.ReadLine());
                 Alumno alumnoPorDNI = curso.buscarAlumnoPorDNI(dniBuscar);
                 Console.WriteLine(alumnoPorDNI.getNombre());
@@ -48,21 +57,19 @@ class Program
             {
                 double falta;
                 int dniAlumno;
+                
+                do{
                 Console.WriteLine("ingrese el dni del alumno");
                 dniAlumno = int.Parse(Console.ReadLine());
+                if(!curso.existeAlumnoPorDNI(dniAlumno)){
+                    Console.WriteLine("Ese dni no existe. Ingresar denuevo");
+                }
+                }while(!curso.existeAlumnoPorDNI(dniAlumno));
+                
                 Console.WriteLine("Cuanta falta le quiere poner al alumno?");
                 falta = double.Parse(Console.ReadLine());
-                Alumno alumnoFalta = curso.buscarAlumnoPorDNI(dniAlumno);
-                if (alumnoFalta != null) 
-                {
-                    alumnoFalta.agregarFalta(falta);
-                }
-                else
-                {
-                    Console.WriteLine("Ese alumno no existe");
-                }
+                curso.agregarFalta(dniAlumno, falta);
 
-                
             }
             else if (opcion == 4)
             {

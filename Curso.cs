@@ -1,6 +1,6 @@
 public class Curso
 {
-private Dictionary<Alumno> alumnos = new Dictionary<int, Alumno>();
+private Dictionary<int, Alumno> alumnos = new Dictionary<int, Alumno>();
 
 public bool agregarAlumnos(int clave, Alumno alumno)
 {
@@ -18,33 +18,32 @@ public Alumno buscarAlumnoPorDNI(int DNI)
 {
     return alumnos[DNI];
 }
-public void agregarFalta(double falta, Alumno alumno)
+public void agregarFalta(int clave, double falta)
 {
-  int i = 0;
-    while (i < alumnos.Count && alumnos[i] != alumno)
-    {        
-    i++;
-    }
-    if (i < alumnos.Count)
+    if(alumnos.ContainsKey(clave))
     {
-        alumnos[i].agregarFalta(falta);
+        alumnos[clave].agregarFalta(falta);
     }
 }
 public void mostrarAlumnos()
 {
-    foreach (Alumno alumno in alumnos)
+    foreach (int clave in alumnos.Keys)
     {
-        Console.WriteLine(alumno.getNombre());
+        Console.WriteLine(alumnos[clave].getNombre());
     }
 }
 public void mostrarAlumnosLibres()
 {
-    foreach (Alumno alumno in alumnos)
+    foreach (int clave in alumnos.Keys)
     {
-        if(alumno.mostrarFaltas() >= 15)
+        if(alumnos[clave].mostrarFaltas() >= 15)
         {
-            Console.WriteLine(alumno.getNombre());
+            Console.WriteLine(alumnos[clave].getNombre());
         }
     }
+}
+public bool existeAlumnoPorDNI(int dni)
+{
+    return alumnos.ContainsKey(dni);
 }
 }
